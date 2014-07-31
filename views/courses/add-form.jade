@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1 Adding course
+  form(action='/courses/add', method='post')
+    label(for='prefix') Prefix:
+    input(name='prefix')
+    label(for='title') Title:
+    input(name='title')
+    input(type='submit', value='Submit')

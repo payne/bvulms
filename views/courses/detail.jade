@@ -1,0 +1,7 @@
+extends ../layout
+
+block content
+  h1= title
+  p Showing course detail for course ID: #{course.id}: #{course.prefix} #{course.title}.
+  p Taught by
+    strong  #{course.instructor_name}.
