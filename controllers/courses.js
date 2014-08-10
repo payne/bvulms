@@ -37,6 +37,26 @@ module.exports.list = function(req, res) {
     });
 };
 
+// FIXME
+// With this we will build an Angular portion to the site.
+// We will have a list of courses with a search box that dynamically filters.
+// It will autoload the data using Angular's $http service, through which it
+// will call this route.
+module.exports.listJson = function(req, res) {
+    query = require('../models/db-util.js').query();
+    query('select id, prefix, title from courses', function(err, rows, result) {
+        var rs = [];
+        if (err) {
+            barf(res, 'error running query', err);
+            return;
+        }
+        rows.forEach( function(row) {
+            rs.push( { id: row.id, prefix: row.prefix, title: row.title } );
+        } );
+        res.send( JSON.stringify(rs) );
+    });
+};
+
 // FIXME: check that req.params.course_id is numeric ...
 //          either do this as a regex in routes/courses.js or do it 
 //          at  if (rows.length == 1)  below.

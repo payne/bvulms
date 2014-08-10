@@ -1,0 +1,13 @@
+doctype html
+html(ng-app='bvulmsApp')
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+    script(src='/angular/angular.js')
+    script(src='/js/controllers.js')
+  body(ng-controller="CourseListCtrl")
+    p Filter: 
+      input(ng-model="query")
+    ul
+      li(ng-repeat='course in courses | filter:query | orderBy:orderProp').
+        {{course.prefix}} {{course.title}}
